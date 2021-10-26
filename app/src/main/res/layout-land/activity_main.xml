@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_track_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:gravity="center"
         android:textColor="@color/pink_900"
         android:textSize="30sp"
@@ -33,6 +34,7 @@
         android:id="@+id/ib_previous"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_margin="20dp"
         android:background="@drawable/ic_outline_skip_previous"
         android:backgroundTint="@color/pink_900"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,6 +48,7 @@
         android:id="@+id/ib_next"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_margin="20dp"
         android:background="@drawable/ic_outline_skip_next"
         android:backgroundTint="@color/pink_900"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,6 +62,7 @@
         android:id="@+id/ib_play_pause"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_margin="20dp"
         android:background="@drawable/ic_outline_play_arrow"
         android:backgroundTint="@color/pink_900"
         app:layout_constraintBottom_toBottomOf="parent"

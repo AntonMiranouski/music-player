@@ -15,14 +15,12 @@ import anton.miranouski.musicplayer.model.data.State.STATE_CREATED
 import anton.miranouski.musicplayer.model.data.State.STATE_ERROR
 import anton.miranouski.musicplayer.model.data.State.STATE_INITIALIZED
 import anton.miranouski.musicplayer.model.data.State.STATE_INITIALIZING
-import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-
 
 class DataSource @Inject constructor(private val repository: Repository) {
 
@@ -61,11 +59,7 @@ class DataSource @Inject constructor(private val repository: Repository) {
 
         tracks.forEach { track ->
             val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(
-                    MediaItem.fromUri(
-                        track.getString(METADATA_KEY_MEDIA_URI).toUri()
-                    )
-                )
+                .createMediaSource(track.getString(METADATA_KEY_MEDIA_URI).toUri())
 
             concatenatingMediaSource.addMediaSource(mediaSource)
         }
