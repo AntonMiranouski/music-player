@@ -9,6 +9,8 @@ import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
 import androidx.media.MediaBrowserServiceCompat
 import anton.miranouski.musicplayer.model.data.DataSource
+import anton.miranouski.musicplayer.service.notification.NotificationManager
+import anton.miranouski.musicplayer.service.notification.PlayerNotificationListener
 import anton.miranouski.musicplayer.util.Constants.MEDIA_ROOT_ID
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -47,6 +49,10 @@ class MusicService : MediaBrowserServiceCompat() {
 
     private var isPLayerInitialized = false
 
+    var isForegroundService = false
+
+    private lateinit var notificationManager: NotificationManager
+
     override fun onCreate() {
         super.onCreate()
         serviceScope.launch {
@@ -79,6 +85,14 @@ class MusicService : MediaBrowserServiceCompat() {
             setQueueNavigator(QueueNavigator())
             setPlayer(exoPlayer)
         }
+
+        notificationManager = NotificationManager(
+            this,
+            mediaSession.sessionToken,
+            PlayerNotificationListener(this)
+        ) {}
+
+        notificationManager.showNotification(exoPlayer)
     }
 
     private fun preparePlayer(
